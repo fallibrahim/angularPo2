@@ -1,0 +1,27 @@
+.sidebar {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  .sidebar .nav-link {
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .sidebar .nav-link.active {
+    color: #28a745;
+  }
+  
+  .main-content {
+    background-color: #f4f6f9;
+    min-height: 100vh;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #e9ecef;
+  }
+  
+  .btn-sm {
+    padding: 5px 10px;
+  }
+  

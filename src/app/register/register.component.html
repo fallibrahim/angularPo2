@@ -19,7 +19,7 @@
               <label for="nom" class="form-label">Nom:</label>
               <div class="input-group">
                 <input id="nom" formControlName="nom" type="text" class="form-control" placeholder="Entrez votre Nom">
-                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                <span class="input-group-text"><i class="fa-solid fa-person" style="color: #63E6BE;"></i></span>
               </div>
               <div *ngIf="registerForm.get('nom')?.invalid && registerForm.get('nom')?.touched" class="text-danger">
                 <small *ngIf="registerForm.get('nom')?.hasError('required')">Le nom est requis.</small>
@@ -32,7 +32,7 @@
               <label for="prenom" class="form-label">Prénom:</label>
               <div class="input-group">
                 <input id="prenom" formControlName="prenom" type="text" class="form-control" placeholder="Entrez votre Prénom">
-                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                <span class="input-group-text"><i class="fa-solid fa-person" style="color: #63E6BE;"></i></span>
               </div>
               <div *ngIf="registerForm.get('prenom')?.invalid && registerForm.get('prenom')?.touched" class="text-danger">
                 <small *ngIf="registerForm.get('prenom')?.hasError('required')">Le prénom est requis.</small>
@@ -45,7 +45,7 @@
               <label for="phone" class="form-label">Téléphone:</label>
               <div class="input-group">
                 <input id="phone" formControlName="phone" type="text" class="form-control" placeholder="Entrez votre numéro de téléphone">
-                <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                <span class="input-group-text"><i class="fa-solid fa-phone" style="color: #63E6BE;"></i></span>
               </div>
               <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched" class="text-danger">
                 <small *ngIf="registerForm.get('phone')?.hasError('required')">Le téléphone est requis.</small>
@@ -58,7 +58,7 @@
               <label for="email" class="form-label">Email:</label>
               <div class="input-group">
                 <input id="email" formControlName="email" type="email" class="form-control" placeholder="Entrez votre email">
-                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                <span class="input-group-text"><i class="fa-solid fa-envelope" style="color: #63E6BE;"></i></span>
               </div>
               <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">
                 <small *ngIf="registerForm.get('email')?.hasError('required')">L'email est requis.</small>
@@ -71,7 +71,7 @@
               <label for="password" class="form-label">Mot de passe:</label>
               <div class="input-group">
                 <input id="password" formControlName="password" type="password" class="form-control" placeholder="Entrez votre mot de passe">
-                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <span class="input-group-text"><i class="fa-solid fa-lock" style="color: #63E6BE;"></i></span>
               </div>
               <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
                 <small *ngIf="registerForm.get('password')?.hasError('required')">Le mot de passe est requis.</small>
@@ -84,7 +84,7 @@
               <label for="confirmPassword" class="form-label">Confirmez votre mot de passe:</label>
               <div class="input-group">
                 <input id="confirmPassword" formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirmez votre mot de passe">
-                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <span class="input-group-text"><i class="fa-solid fa-lock" style="color: #63E6BE;"></i></span>
               </div>
               <div *ngIf="registerForm.hasError('passwordsMismatch') && registerForm.get('confirmPassword')?.touched" class="text-danger">
                 <small>Les mots de passe ne correspondent pas.</small>

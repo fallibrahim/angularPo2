@@ -12,7 +12,7 @@
               <label for="email" class="form-label">Email:</label>
               <div class="input-group">
                   <input id="email" formControlName="email" type="email" class="form-control" placeholder="Entrez votre email">
-                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                  <span class="input-group-text"><i class="fa-solid fa-envelope" style="color: #63E6BE;"></i></span>
               </div>
               <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
                 <small *ngIf="loginForm.get('email')?.hasError('required')">L'email est requis.</small>
@@ -23,7 +23,7 @@
               <label for="password" class="form-label">Mot de passe:</label>
               <div class="input-group">
                   <input id="password" formControlName="password" type="password" class="form-control" placeholder="Entrez votre mot de passe">
-                  <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                  <span class="input-group-text"><i class="fa-solid fa-lock" style="color: #63E6BE;"></i></span>
               </div>
               <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
                 <small *ngIf="loginForm.get('password')?.hasError('required')">Le mot de passe est requis.</small>
