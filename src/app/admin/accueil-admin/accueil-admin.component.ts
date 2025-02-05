@@ -26,8 +26,8 @@ export class AccueilAdminComponent {
  gotToPublierAnnonces() {
   this.router.navigate(['/publier-annonce']);
 }
-logout() : void {
+logout(): void {
   this.authService.logout();
-  this.router.navigate(['/login']);
 }
+
 }

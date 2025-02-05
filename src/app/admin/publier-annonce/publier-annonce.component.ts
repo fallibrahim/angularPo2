@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AnnonceService } from '../annonce.service';
 import { Annonce } from '../annonce.model';
-
+import { AuthService } from '../../auth.service';
 @Component({
   selector: 'app-publier-annonce',
   standalone: true,
@@ -12,7 +12,9 @@ import { Annonce } from '../annonce.model';
 })
 export class PublierAnnonceComponent {
   annonceForm : FormGroup;
-  constructor(private fb: FormBuilder, private annonceService: AnnonceService) {
+  constructor(private fb: FormBuilder, 
+    private annonceService: AnnonceService,
+  private authService: AuthService) {
     this.annonceForm = this.fb.group({
       titre: ['', Validators.required],
       description: ['', Validators.required],
@@ -30,5 +32,8 @@ export class PublierAnnonceComponent {
         this.annonceForm.reset();
       });
     }
+  }
+  logout() : void {
+   this.authService.logout();
   }
 }

@@ -11,7 +11,7 @@ export class AuthService {
     console.log("Données reçues du formulaire de login", data);
 
     // Simuler une vérification d'identifiants
-    if (data.email === 'admin@example.com' && data.password === 'password123') {
+    if (data.email === 'admin@gmail.com' && data.password === 'admin123') {
       localStorage.setItem('isLoggedIn', 'true'); // Stocker l'état de connexion
       this.router.navigate(['/accueil-admin']); // Rediriger vers accueil-admin
       return true;
@@ -21,16 +21,15 @@ export class AuthService {
     }
   }
 
-  register(data : {nom:string, prenom:string, phone:string, email:string, password:string, confirmPassword:string, adresse:string, dateNaissance:string}) {
-    console.log("Données réçues du formulaire d'inscription", data);
-  }
-
   logout(): void {
     localStorage.removeItem('isLoggedIn'); // Supprimer l'état de connexion
-    this.router.navigate(['/login']); // Redirection vers la page de connexion
+    this.router.navigate(['/login']);
   }
 
   isAuthenticated(): boolean {
-    return localStorage.getItem('isLoggedIn') === 'true'; // Vérifier si l'utilisateur est connecté
+    return localStorage.getItem('isLoggedIn') === 'true';
+  }
+  register(data : {nom:string, prenom:string, phone:string, email:string, password:string, confirmPassword:string, adresse:string, dateNaissance:string}) {
+    console.log("Données réçues du formulaire d'inscription", data);
   }
 }

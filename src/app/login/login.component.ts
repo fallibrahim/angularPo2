@@ -23,20 +23,21 @@ export class LoginComponent {
   }
  }
 
- onSubmit(): void {
-  if (this.loginForm.valid) {
-    const isLoggedIn = this.authService.login(this.loginForm.value);
-    if (isLoggedIn) {
-      this.router.navigate(['/accueil-admin']); // Redirection après connexion
+onSubmit(): void {
+    if (this.loginForm.valid) {
+      const isLoggedIn : any = this.authService.login(this.loginForm.value);
+      if (isLoggedIn) {
+        this.router.navigate(['/accueil-admin']); // Redirection après connexion
+      }
+    } else {
+      console.log('Form is not valid');
     }
-  } else {
-    console.log('Form is not valid');
   }
-}
  goToRegister():void {
   this.router.navigate(['/register']);
 }
 ngOnInit(): void {
+  // Empêche de revenir à la page précédente après la déconnexion
   history.pushState(null, '', location.href);
   window.onpopstate = () => {
     history.pushState(null, '', location.href);
