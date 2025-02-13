@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+  import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AnnonceService } from '../annonce.service';
 import { Annonce } from '../annonce.model';
@@ -27,9 +27,11 @@ export class PublierAnnonceComponent {
    publierAnnonce() {
     if (this.annonceForm.valid) {
       const nouvelleAnnonce: Annonce = this.annonceForm.value;
-      this.annonceService.ajouterAnnonce(nouvelleAnnonce).subscribe(() => {
-        alert('Annonce publiée avec succès !');
-        this.annonceForm.reset();
+      this.annonceService.ajouterAnnonce(nouvelleAnnonce).subscribe({
+        next: () => {
+          console.log('Annonce publiée avec succès !');
+        },
+        error: err => console.error('Erreur lors de l’ajout:', err)
       });
     }
   }

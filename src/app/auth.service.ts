@@ -1,34 +1,52 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private router: Router) { }
+  private apiUrl = 'http://localhost:4001/USERSERVICE/signIn';
+     constructor(private http : HttpClient,
+     private router: Router,
+     @Inject(PLATFORM_ID) private platformId: Object
+    ) { }
 
-  login(data: { email: string, password: string }): boolean {
-    console.log("Données reçues du formulaire de login", data);
+    login(data: { email: string; password: string }): Observable<any> {
+      return this.http.post<any>(this.apiUrl, data).pipe(
+        tap(response => {
+          if (response.token && isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('token', response.token);
+            console.log('🔐 Token enregistré:', localStorage.getItem('token')); // Vérification
+          }
+        })
+      );
+    }
+    
 
-    // Simuler une vérification d'identifiants
-    if (data.email === 'admin@gmail.com' && data.password === 'admin123') {
-      localStorage.setItem('isLoggedIn', 'true'); // Stocker l'état de connexion
-      this.router.navigate(['/accueil-admin']); // Rediriger vers accueil-admin
-      return true;
-    } else {
-      alert("Email ou mot de passe incorrect !");
+    logout(): void {
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.removeItem('token'); 
+        console.log("🔴 Déconnexion : Token supprimé ->", localStorage.getItem('token'));
+      }
+      this.router.navigate(['/login']).then(() => {
+        console.log("✅ Redirection vers /login réussie");
+      }).catch(err => {
+        console.error("❌ Erreur de redirection :", err);
+      });
+    }
+    
+
+    isAuthenticated(): boolean {
+      if (isPlatformBrowser(this.platformId)) {
+        const token = localStorage.getItem('token');
+        console.log('🔎 Vérification du token:', token);
+        return token !== null;
+      }
       return false;
     }
-  }
-
-  logout(): void {
-    localStorage.removeItem('isLoggedIn'); // Supprimer l'état de connexion
-    this.router.navigate(['/login']);
-  }
-
-  isAuthenticated(): boolean {
-    return localStorage.getItem('isLoggedIn') === 'true';
-  }
+    
   register(data : {nom:string, prenom:string, phone:string, email:string, password:string, confirmPassword:string, adresse:string, dateNaissance:string}) {
     console.log("Données réçues du formulaire d'inscription", data);
   }
