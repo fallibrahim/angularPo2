@@ -1,0 +1,50 @@
+<div class="container-fluid" style="background-color:#f8f9fa; min-height: 100vh;">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2 sidebar p-3 d-flex flex-column" style="background-color: white; height: 100vh;">
+        <app-side-bar></app-side-bar>
+        <a href="#" class="text-danger mt-auto btn btn-danger text-white" (click)="logout()">Déconnexion</a>
+      </div>
+  
+      <!-- Formulaire -->
+      <div class="col-md-10 d-flex justify-content-center align-items-center">
+        <div class="card p-5 shadow-sm" style="width: 70%; background-color: white; border-radius: 10px;">
+            <h2 class="mb-4">Modifier l'annonce</h2>
+            <form [formGroup]="annonceForm" (ngSubmit)="updateAnnonce()">
+              <div class="mb-3">
+                <label for="titre" class="form-label">Titre</label>
+                <input id="titre" class="form-control" formControlName="titre" />
+              </div>
+          
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" class="form-control" formControlName="description"></textarea>
+              </div>
+          
+              <div class="mb-3">
+                <label for="dateLimite" class="form-label">Date limite</label>
+                <input type="text" id="dateLimite" class="form-control" formControlName="dateLimite" />
+              </div>
+
+              <div class="mb-3">
+                <label for="academiqueId" class="form-label">Année Académique</label>
+                <select id="academiqueId" class="form-control" formControlName="academiqueId">
+                  <option value="" disabled>-- Sélectionnez une année --</option>
+                  <option *ngFor="let annee of anneesAcademiques" [value]="annee.id">
+                    {{ annee.annee }}
+                  </option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="annonceForm.pristine">Mettre à jour</button>
+
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+   
+
+  

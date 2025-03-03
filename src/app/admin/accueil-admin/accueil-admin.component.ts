@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 // import { AnnonceService } from '../annonce.service';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../auth.service';
+import { SideBarComponent } from '../side-bar/side-bar.component';
 
 @Component({
   selector: 'app-accueil-admin',
   standalone: true,
   imports: [
-    CommonModule,RouterLink
+    CommonModule,RouterLink,SideBarComponent
   ],
   templateUrl: './accueil-admin.component.html',
   styleUrl: './accueil-admin.component.css'
@@ -22,6 +23,7 @@ export class AccueilAdminComponent {
   ngOnInit() {
       // this.annonceService.getAnnonces().subscribe(annonces => 
       // this.annonces = annonces)
+      console.log("✅ Accueil Admin chargé !");
   }
  gotToPublierAnnonces() {
   this.router.navigate(['/publier-annonce']);

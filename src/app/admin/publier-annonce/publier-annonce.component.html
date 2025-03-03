@@ -2,32 +2,15 @@
     <div class="row">
       <!-- Sidebar -->
       <div class="col-md-2 sidebar p-3 d-flex flex-column" style="background-color: white; height: 100vh;">
-        <img src="photo_2025-01-21_13-31-42.jpg" alt="Logo" width="150" height="80" style="margin-left:10px;">
-        <ul class="nav flex-column mt-4">
-            <li class="nav-item">
-              <a class="nav-link active text-success" href="#"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="#"><i class="fas fa-users"></i>Candidats</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="#"><i class="fas fa-bullhorn"></i>Annonces</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="#"><i class="fas fa-calendar-alt"></i>Année</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="#"><i class="fas fa-cog"></i>Réglages</a>
-            </li>
-          </ul>
-        <a href="#" class="text-danger mt-auto" (click)="logout()">Déconnexion</a>
+        <app-side-bar></app-side-bar>
+        <a href="#" class="text-danger mt-auto btn btn-danger text-white" (click)="logout()">Déconnexion</a>
       </div>
   
       <!-- Formulaire -->
       <div class="col-md-10 d-flex justify-content-center align-items-center">
         <div class="card p-5 shadow-sm" style="width: 70%; background-color: white; border-radius: 10px;">
           <h3 class="mb-4 font-weight-bold">Votre Annonce</h3>
-          <form [formGroup]="annonceForm" (ngSubmit)="publierAnnonce()">
+          <form [formGroup]="annonceForm" (ngSubmit)="ajouterAnnonce()">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -43,27 +26,19 @@
   
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Année académique</label>
-                  <select formControlName="annee" class="form-control">
-                    <option value="" disabled selected>Sélectionnez</option>
-                    <option>2024-2025</option>
-                    <option>2025-2026</option>
-                  </select>
-                </div>
-  
-                <div class="form-group">
-                  <label>Niveau</label>
-                  <select formControlName="niveau" class="form-control">
-                    <option value="" disabled selected>Sélectionnez</option>
-                    <option>Licence 1</option>
-                    <option>Licence 2</option>
-                  </select>
-                </div>
-  
-                <div class="form-group">
                   <label>Date limite</label>
-                  <input type="date" formControlName="dateLimite" class="form-control">
+                  <input type="text" formControlName="dateLimite" class="form-control">
                 </div>
+                <div class="form-group">
+                  <label>Année Académique</label>
+                  <select formControlName="academiqueId" class="form-control">
+                    <option value="" disabled selected>-- Sélectionnez une année --</option>
+                    <option *ngFor="let annee of anneesAcademiques" [value]="annee.id">
+                      {{ annee.annee }}
+                    </option>
+                  </select>
+                </div>
+                
               </div>
             </div>
             <div class="text-center">

@@ -12,7 +12,7 @@ import { AuthService } from '../auth.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   private isBrowser: boolean;
 
   constructor(
@@ -22,15 +22,17 @@ export class LoginComponent implements OnInit {
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId); // Vérification de l'environnement
 
+    
+    
+  }
+
+  ngOnInit(): void {
+
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
 
-    
-  }
-
-  ngOnInit(): void {
     if (this.isBrowser) {
       console.log('🚀 Vérification de l\'authentification...');
   
@@ -54,18 +56,19 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          console.log("Connexion réussie:", response);
-          this.router.navigate(['/accueil-admin']); // Redirection après connexion
+          console.log("🔑 Connexion réussie:", response);
+          localStorage.setItem('token', response.access_token); // Stocke le token
+          localStorage.setItem('isLoggedIn', 'true');
+          this.router.navigate(['/accueil-admin']);
         },
         error: (err) => {
-          console.error("Erreur d'authentification:", err);
+          console.error("❌ Erreur d'authentification:", err);
           alert("Échec de la connexion. Vérifiez vos identifiants.");
-        }
+        } 
       });
-    } else {
-      console.log('Formulaire invalide');
     }
   }
+  
 
   goToRegister(): void {
     this.router.navigate(['/register']);
